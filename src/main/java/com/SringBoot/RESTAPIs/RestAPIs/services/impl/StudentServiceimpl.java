@@ -8,9 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.security.cert.Extension;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -33,4 +31,11 @@ public class StudentServiceimpl implements StudentService {
 //        }
         return studentDtoList;
     }
+
+    @Override
+    public Studententity getStudendsById(Long id) {
+       Studententity student =studentRepository.findById(id).orElseThrow(()->new IllegalArgumentException("Student not found with Id :" + id));
+        return student;
+    }
+
 }
