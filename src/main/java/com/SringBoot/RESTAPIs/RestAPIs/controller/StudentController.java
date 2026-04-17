@@ -4,26 +4,27 @@ import com.SringBoot.RESTAPIs.RestAPIs.dto.StudentDto;
 
 import com.SringBoot.RESTAPIs.RestAPIs.entity.Studententity;
 import com.SringBoot.RESTAPIs.RestAPIs.reposetory.StudentRepository;
+import com.SringBoot.RESTAPIs.RestAPIs.services.StudentService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 public class StudentController {
 
-    private final StudentRepository studentRepository;
+    private final StudentService studentService;
 
-    public StudentController(StudentRepository studentRepository) {
-        this.studentRepository = studentRepository;
+
+
+    @GetMapping("/students")
+    public List<StudentDto> getAllStudent() {
+        return  studentService.getAllStudents();
     }
 
-    @GetMapping("/student")
-    public List<Studententity> getStudent() {
-        return studentRepository.findAll();
-    }
-
-    @GetMapping("/student/{id}")
-    public StudentDto getStudentById(@PathVariable Long id) {
-        return new StudentDto(id, "Aman", "amanshaikh9156@gmail.com");
+    @GetMapping("/students/{id}")
+    public String getStudentById(@PathVariable Long id) {
+        return "Path Variable"+id;
     }
 }

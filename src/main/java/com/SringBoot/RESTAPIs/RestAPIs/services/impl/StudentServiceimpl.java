@@ -23,12 +23,14 @@ public class StudentServiceimpl implements StudentService {
     public List<StudentDto> getAllStudents(){
         List<Studententity> students =studentRepository.findAll();
         Extension student;
-        List<StudentDto> studentDtoList;
-        studentDtoList = students.stream().map( Students -> new StudentDto( Students.getId() , Students.getName(), Students.getEmail())).toList();
+        List<StudentDto> studentDtoList= students
+                .stream()
+                .map( Students -> new StudentDto( Students.getId() , Students.getName(), Students.getEmail()))
+                .toList();
 
 //        for(StudentDto student : students){
 //            StudentDto studentDtoList = new StudentDto(student.getID(), student.getName(),student.getEmail())
 //        }
-        return List.of();
+        return studentDtoList;
     }
 }
